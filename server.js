@@ -88,11 +88,17 @@ app.get('/articles/:id', function(req, res){
 
 ///////////////////////////////
 
+///////remove note //////////
+app.get('/remove/:id', function(req, res){
+	Article.set({'_id': req.params.id}, {$unset: {note: 1 }}, callback)
+	
+});
 
 
 
 
 
+//////////////////////////////
 
 
 app.post('/articles/:id', function(req, res){

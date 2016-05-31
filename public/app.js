@@ -6,6 +6,9 @@ $.getJSON('/articles', function(data) {
  
   	$('#articles').append('<article data-id="' + data[0]._id + '"><a href="https://news.vice.com/' + data[0].link +'"<h3>'+ data[0].title + '</h3></a><br/><p>'+ data[0].body + '</p></article>');
   	//console.log(counter);
+   // if(data.note){
+     
+
 
 //previous button
   	$('#left').on('click', function(){
@@ -41,7 +44,33 @@ $.getJSON('/articles', function(data) {
   		}
   	})
 
+/// get initial note ////
+var thisId = $('#articles').children().attr('data-id');
+$.ajax({
+    method: "GET",
+    url: "/articles/" + thisId,
+  })
+    .done(function( data ) {
+      console.log(data);
+
+      if(data.note){
+        $('#notedisplay').append('<h3 data-id="'+ data.note._id + '">'+ data.note.title + '</h3');
+        $('#notedisplay').append('<p>' + data.note.body + '</p>');
+      } else {
+        $('#notedisplay').append('<h3> There are no notes to display </h3');
+        $('#notedisplay').append('<p> Please add a note </p>');
+      }
+
+    });
+
+
 });
+
+
+
+
+
+
 
 ////Get Notes ////////
 
@@ -57,7 +86,7 @@ $(document).on('click', 'button', function(){
       console.log(data);
 
       if(data.note){
-        $('#notedisplay').append('<h3>'+ data.note.title + '</h3');
+        $('#notedisplay').append('<h3 data-id="'+ data.note._id + '">'+ data.note.title + '</h3');
         $('#notedisplay').append('<p>' + data.note.body + '</p>');
       } else {
       	$('#notedisplay').append('<h3> There are no notes to display </h3');
@@ -100,3 +129,37 @@ $('#addnote').on("click", function(){
 	return false;
 
 });	
+
+
+
+/////remove note //////
+$('#removenote').on('click', function(){
+  var thisId = $('#articles').children().attr('data-id');
+  alert(thisId);
+  var URL = "/remove/" + thisId;
+
+  $.post( URL, data)
+    .done(function(data){
+      console.log(data.note);
+    });
+
+
+  //   $.ajax({
+  //   method: "GET",
+  //   url: "/articles/" + thisId,
+  // })
+  //   .done(function( data ) {
+  //     console.log(data);
+
+  //     if(data.note){
+  //       $('#notedisplay').append('<h3 data-id="'+ data.note._id + '">'+ data.note.title + '</h3');
+  //       $('#notedisplay').append('<p>' + data.note.body + '</p>');
+  //     } else {
+  //       $('#notedisplay').append('<h3> There are no notes to display </h3');
+  //       $('#notedisplay').append('<p> Please add a note </p>');
+  //     }
+
+  //   });
+
+
+})

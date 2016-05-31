@@ -89,10 +89,20 @@ app.get('/articles/:id', function(req, res){
 ///////////////////////////////
 
 ///////remove note //////////
-app.get('/remove/:id', function(req, res){
-	Article.set({'_id': req.params.id}, {$unset: {note: 1 }}, callback)
+app.post('/remove/:id', function(req, res){
 	
-});
+	
+		note.remove({'_id': req.params.id}, function(err, removed){
+			if(err){
+				console.log(err);
+			} else {
+				console.log("Delete Successful");
+				cd(removed);
+			}
+		});
+	});
+
+
 
 
 

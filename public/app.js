@@ -134,7 +134,7 @@ $('#addnote').on("click", function(){
 
 /////remove note //////
 $('#removenote').on('click', function(){
-  var thisId = $('#articles').children().attr('data-id');
+  var thisId = $('#notedisplay').children().attr('data-id');
   alert(thisId);
   var URL = "/remove/" + thisId;
 

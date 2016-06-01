@@ -4,7 +4,7 @@ var counter = 0;
 $.getJSON('/articles', function(data) {
 	
  
-  	$('#articles').append('<article data-id="' + data[0]._id + '"><h3 class="bodytitle">'+ data[0].title + '</h3><br/><p class="bodytxt">'+ data[0].body + '</p><br><a href="https://news.vice.com/' + data[0].link +'" class="bodyread">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
+  	$('#articles').append('<article data-id="' + data[0]._id + '"><h3 class="bodytitle">'+ data[0].title + '</h3><br/><p class="bodytxt">'+ data[0].body + '</p><br><a href="https://news.vice.com/' + data[0].link +'" class="bodyread" target="_blank">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
   	//console.log(counter);
    // if(data.note){
      
@@ -16,12 +16,12 @@ $.getJSON('/articles', function(data) {
   		$('#articles').text('');
   		if( counter >= 0) {
   			
-  			$('#articles').append('<article data-id="' + data[counter]._id + '"><h3 class="bodytitle">'+ data[counter].title + '</h3><br/><p class="bodytxt">'+ data[counter].body + '</p><br><a href="https://news.vice.com/' + data[counter].link +'" class="bodyread">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
+  			$('#articles').append('<article data-id="' + data[counter]._id + '"><h3 class="bodytitle">'+ data[counter].title + '</h3><br/><p class="bodytxt">'+ data[counter].body + '</p><br><a href="https://news.vice.com/' + data[counter].link +'" class="bodyread" target="_blank">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
   			//console.log(counter);
   			return;
   		} else {
   			counter = data.length-1;
-  			$('#articles').append('<article data-id="' + data[data.length-1]._id + '"><h3 class="bodytitle">'+ data[data.length-1].title + '</h3><br/><p class="bodytxt">'+ data[data.length-1].body + '</p><br><a href="https://news.vice.com/' + data[data.length-1].link +'" class="bodyread">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
+  			$('#articles').append('<article data-id="' + data[data.length-1]._id + '"><h3 class="bodytitle">'+ data[data.length-1].title + '</h3><br/><p class="bodytxt">'+ data[data.length-1].body + '</p><br><a href="https://news.vice.com/' + data[data.length-1].link +'" class="bodyread" target="_blank">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
 	  		//console.log(counter);
 	  		return;
   		}
@@ -33,12 +33,12 @@ $.getJSON('/articles', function(data) {
   		$('#articles').text('');
   		if( counter <= data.length-1) {
   			
-  			$('#articles').append('<article data-id="' + data[counter]._id + '"><h3 class="bodytitle">'+ data[counter].title + '</h3><br/><p class="bodytxt">'+ data[counter].body + '</p><br><a href="https://news.vice.com/' + data[counter].link +'" class="bodyread">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
+  			$('#articles').append('<article data-id="' + data[counter]._id + '"><h3 class="bodytitle">'+ data[counter].title + '</h3><br/><p class="bodytxt">'+ data[counter].body + '</p><br><a href="https://news.vice.com/' + data[counter].link +'" class="bodyread" target="_blank">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
   			//console.log(counter);
   			return;
   		} else {
   			counter = 0;
-  			$('#articles').append('<article data-id="' + data[0]._id + '"><h3 class="bodytitle">'+ data[0].title + '</h3><br/><p class="bodytxt">'+ data[0].body + '</p><br><a href="https://news.vice.com/' + data[0].link +'" class="bodyread">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
+  			$('#articles').append('<article data-id="' + data[0]._id + '"><h3 class="bodytitle">'+ data[0].title + '</h3><br/><p class="bodytxt">'+ data[0].body + '</p><br><a href="https://news.vice.com/' + data[0].link +'" class="bodyread" target="_blank">Read Full Article <i class="glyphicon glyphicon-share-alt"></i></a></article>');
 	  		//console.log(counter);
 	  		return;
   		}

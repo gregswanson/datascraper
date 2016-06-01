@@ -51,7 +51,7 @@ $.ajax({
     url: "/articles/" + thisId,
   })
     .done(function( data ) {
-      console.log(data);
+      //console.log(data);
 
       if(data.note){
         $('#notedisplay').append('<h3 data-id="'+ data.note._id + '">'+ data.note.title + '</h3');
@@ -83,7 +83,7 @@ $(document).on('click', 'button', function(){
     url: "/articles/" + thisId,
   })
     .done(function( data ) {
-      console.log(data);
+      //console.log(data);
 
       if(data.note){
         $('#notedisplay').append('<h3 data-id="'+ data.note._id + '">'+ data.note.title + '</h3');
@@ -120,7 +120,7 @@ $('#addnote').on("click", function(){
 
 	$.post( URL, data)
 		.done(function(data){
-			console.log(data);
+			//console.log(data);
 		})
 
 	$('#noteinputtitle').val('');
@@ -131,7 +131,7 @@ $('#addnote').on("click", function(){
     url: "/articles/" + thisId,
   })
     .done(function( data ) {
-      console.log(data);
+      //console.log(data);
 
       $('#notedisplay').empty();
 
@@ -163,7 +163,7 @@ $('#removenote').on('click', function(){
 
   $.post( URL)
     .done(function(data){
-      console.log(data.note);
+      //console.log(data.note);
     });
 
 

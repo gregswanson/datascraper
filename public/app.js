@@ -126,6 +126,27 @@ $('#addnote').on("click", function(){
 	$('#noteinputtitle').val('');
 	$('#noteinput').val('');
 
+  $.ajax({
+    method: "GET",
+    url: "/articles/" + thisId,
+  })
+    .done(function( data ) {
+      console.log(data);
+
+      $('#notedisplay').empty();
+
+      if(data.note){
+        $('#notedisplay').append('<h3 data-id="'+ data.note._id + '">'+ data.note.title + '</h3');
+        $('#notedisplay').append('<p>' + data.note.body + '</p>');
+      } else {
+        $('#notedisplay').append('<h3> There are no notes to display </h3');
+        $('#notedisplay').append('<p> Please add a note </p>');
+      }
+
+    });
+
+
+
 	return false;
 
 });	

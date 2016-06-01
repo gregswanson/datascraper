@@ -41,27 +41,46 @@ app.get('/scrape', function(req, res) {
     var $ = cheerio.load(html);
     $('article').each(function(i, element) {
 
-				var result = {};
+    	var title = $(this).children('h2').text().replace(/(\n|\t)/gm,"");
+ 		var	body = $(this).children('p').text().replace(/(\n|\t)/gm,"");
+ 		var	link = $(this).children('h2').children('a').attr('href');
 
-				result.title = $(this).children('h2').text().replace(/(\n|\t)/gm,"");
-				result.body = $(this).children('p').text().replace(/(\n|\t)/gm,"");
-				result.link = $(this).children('h2').children('a').attr('href');
+	Article.findOne({
+		'title': title
+		}, function(err, res) {
+	
+		if(err) {
+		console.log(err);
+		}
+	
 
-				var entry = new Article (result);
+//if there is no match
+		if (res === null) {
+		
+				var entry = new Article ({
 
-		Article.update(
-		   { title: result.title },
-		   {
-		      entry
-		   },
-		   { upsert: true }
-		)
+ 				title: title,
+ 				body:  body,
+ 				link: link
+ 				});
+ 				
+
+ 				entry.save(function(err, doc) {
+ 				  if (err) {
+ 				    console.log(err);
+ 				  } else {
+ 				    console.log(doc);
+ 				  }
+ 				});
 
 
-    });
+    };
   });
+	});
+});
   res.send("Scrape Complete");
 });
+
 
 
 

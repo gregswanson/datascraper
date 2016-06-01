@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var port = process.env.PORT || 3000;
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var request = require('request');
@@ -176,6 +177,6 @@ app.post('/articles/:id', function(req, res){
 
 
 //listen
-app.listen(3000, function() {
-  console.log('App running on port 3000!');
+app.listen(port, function() {
+  console.log('App running on port ' + port);
 });

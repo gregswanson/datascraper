@@ -32,15 +32,15 @@ var Note = require('./models/note.js');
 var Article = require('./models/article.js');
 
 //routes
+// app.get('/', function(req, res) {
+//   res.send(index.html);
+// });
+
+
+
+
+
 app.get('/', function(req, res) {
-  res.send(index.html);
-});
-
-
-
-
-
-app.get('/scrape', function(req, res) {
   request('https://news.vice.com/', function(error, response, html) {
     var $ = cheerio.load(html);
     $('article').each(function(i, element) {
@@ -82,39 +82,11 @@ app.get('/scrape', function(req, res) {
   });
 	});
 });
-  res.send("Scrape Complete");
+  res.send(index.html);
 });
 
 
 
-
-
-// app.get('/scrape', function(req, res) {
-//   request('https://news.vice.com/', function(error, response, html) {
-//     var $ = cheerio.load(html);
-//     $('article').each(function(i, element) {
-
-// 				var result = {};
-
-// 				result.title = $(this).children('h2').text().replace(/(\n|\t)/gm,"");
-// 				result.body = $(this).children('p').text().replace(/(\n|\t)/gm,"");
-// 				result.link = $(this).children('h2').children('a').attr('href');
-
-// 				var entry = new Article (result);
-
-// 				entry.save(function(err, doc) {
-// 				  if (err) {
-// 				    console.log(err);
-// 				  } else {
-// 				    console.log(doc);
-// 				  }
-// 				});
-
-
-//     });
-//   });
-//   res.send("Scrape Complete");
-// });
 
 
 app.get('/articles', function(req, res){

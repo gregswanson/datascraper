@@ -134,11 +134,13 @@ $('#addnote').on("click", function(){
 
 /////remove note //////
 $('#removenote').on('click', function(){
+
   var thisId = $('#notedisplay').children().attr('data-id');
   alert(thisId);
+
   var URL = "/remove/" + thisId;
 
-  $.post( URL, data)
+  $.post( URL)
     .done(function(data){
       console.log(data.note);
     });

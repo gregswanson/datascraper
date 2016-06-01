@@ -32,6 +32,10 @@ app.get('/', function(req, res) {
   res.send(index.html);
 });
 
+
+
+
+
 app.get('/scrape', function(req, res) {
   request('https://news.vice.com/', function(error, response, html) {
     var $ = cheerio.load(html);
@@ -45,19 +49,49 @@ app.get('/scrape', function(req, res) {
 
 				var entry = new Article (result);
 
-				entry.save(function(err, doc) {
-				  if (err) {
-				    console.log(err);
-				  } else {
-				    console.log(doc);
-				  }
-				});
+		Article.update(
+		   { title: result.title },
+		   {
+		      entry
+		   },
+		   { upsert: true }
+		)
 
 
     });
   });
   res.send("Scrape Complete");
 });
+
+
+
+
+// app.get('/scrape', function(req, res) {
+//   request('https://news.vice.com/', function(error, response, html) {
+//     var $ = cheerio.load(html);
+//     $('article').each(function(i, element) {
+
+// 				var result = {};
+
+// 				result.title = $(this).children('h2').text().replace(/(\n|\t)/gm,"");
+// 				result.body = $(this).children('p').text().replace(/(\n|\t)/gm,"");
+// 				result.link = $(this).children('h2').children('a').attr('href');
+
+// 				var entry = new Article (result);
+
+// 				entry.save(function(err, doc) {
+// 				  if (err) {
+// 				    console.log(err);
+// 				  } else {
+// 				    console.log(doc);
+// 				  }
+// 				});
+
+
+//     });
+//   });
+//   res.send("Scrape Complete");
+// });
 
 
 app.get('/articles', function(req, res){
@@ -91,22 +125,9 @@ app.get('/articles/:id', function(req, res){
 ///////remove note //////////
 app.post('/remove/:id', function(req, res){
 	
-	
-		note.remove({'_id': req.params.id}, function(err, removed){
-			if(err){
-				console.log(err);
-			} else {
-				console.log("Delete Successful");
-				cd(removed);
-			}
-		});
+	Note.find({ '_id': req.params.id }).remove().exec();
+		
 	});
-
-
-
-
-
-
 
 //////////////////////////////
 

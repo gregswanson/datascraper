@@ -131,7 +131,7 @@ button {
 
 }
 
-.bodyread:hover {
+a:hover {
 	color: #d9534f;
 	font-size: 14px;
 	text-transform: uppercase;
